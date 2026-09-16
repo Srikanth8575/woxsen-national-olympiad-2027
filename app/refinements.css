@@ -1,0 +1,1001 @@
+/* Matte finish, scroll choreography and the revised reward/portrait layouts. */
+
+main,.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background: #0d0e10;
+}
+
+.ambient-grain {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(112deg,transparent 0px,rgba(255,255,255,.015) 1px,transparent 2px,transparent 4px);
+}
+
+.ambient-light {
+  position: absolute;
+  width: 135vw;
+  height: 110vh;
+  left: -12%;
+  top: -8%;
+  background: linear-gradient(120deg,transparent 24%,rgba(180,185,200,.05) 39%,rgba(230,232,243,.12) 45%,transparent 52%,rgba(151,29,46,.12) 71%,transparent 85%);
+  will-change: transform;
+}
+
+.ambient-contours {
+  position: absolute;
+  inset: -15% -10%;
+  width: 120%;
+  height: 130%;
+  stroke: rgba(206,206,218,.16);
+  stroke-width: .8;
+}
+
+.ambient-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 32%,transparent 10%,rgba(0,0,0,.42) 95%);
+}
+
+.section,.workshop {
+  border-top: 1px solid rgba(255,255,255,.055);
+}
+
+.light-section {
+  color: #f3f3f5;
+  background: rgba(21,22,25,.76);
+  --muted: #a2a3ac;
+  --border: rgba(255,255,255,.13);
+  color-scheme: dark;
+}
+
+.light-section .section-label {
+  color: #a2a3aa;
+}
+
+.winner-story {
+  background: radial-gradient(ellipse at 75% 50%,rgba(74,22,35,.22),rgba(8,8,9,.6) 72%);
+}
+
+.prizes {
+  position: relative;
+  background: rgba(6,7,9,.35);
+}
+
+.rounds {
+  background: rgba(19,20,23,.65);
+}
+
+.speakers,.site-footer {
+  background: rgba(8,9,11,.35);
+}
+
+.sponsors {
+  background: rgba(16,17,20,.8);
+}
+
+.about-copy .lead {
+  color: #e0e0e5;
+}
+
+.about-copy .text-link {
+  color: #ff8392;
+}
+
+.section-label {
+  letter-spacing: .19em;
+}
+
+.label-line {
+  color: var(--red);
+  width: 24px;
+  opacity: 1;
+}
+
+.qualities h4 {
+  margin-top: 0;
+}
+
+.mobile-nav a {
+  justify-content: space-between;
+}
+
+.mobile-nav a::after {
+  content: '↗';
+  font-size: 17px;
+  color: #8e8e97;
+}
+
+/* Reserve the story's scroll length before hydration so deep links stay aligned. */
+
+@media(min-width:900px) and (prefers-reduced-motion:no-preference) {
+  .winner-story {
+    height: 270svh;
+  }
+}
+
+/* Pointer highlights are delegated to surfaces, never to the text itself. */
+
+[data-hover] {
+  position: relative;
+  isolation: isolate;
+  transition: border-color .3s,box-shadow .35s,translate .35s,scale .35s,background-color .35s;
+}
+
+[data-hover]::after {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(320px circle at var(--hover-x,50%) var(--hover-y,50%),rgba(255,136,154,.95),rgba(255,255,255,.3) 40%,transparent 75%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+[data-hover]:focus-within::after {
+  opacity: 1;
+}
+
+@media(hover:hover) and (pointer:fine) {
+  [data-hover]:hover::after {
+    opacity: 1;
+  }
+  .speaker-card:hover,.qualities>[data-hover]:hover,.contact-grid>[data-hover]:hover,.testimonial-portrait:hover {
+    translate: 0 -5px;
+    box-shadow: 0 18px 45px rgba(0,0,0,.2);
+  }
+  .stats-row>[data-hover]:hover,.round:hover {
+    background: rgba(255,255,255,.025);
+  }
+  .reward-option:hover {
+    translate: 0 -3px;
+    border-color: rgba(255,255,255,.28);
+  }
+  .button:hover {
+    box-shadow: 0 0 0 4px rgba(237,51,70,.12),0 8px 26px rgba(237,51,70,.2);
+  }
+  .icon-button:hover:not(:disabled) {
+    border-color: #e65a6d;
+    color: #fff;
+    scale: 1.08;
+    box-shadow: 0 0 0 4px rgba(237,51,70,.06);
+  }
+  .desktop-nav a:hover {
+    background: rgba(255,255,255,.06);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.15);
+  }
+  .text-link:hover {
+    color: #ff8a99;
+  }
+  .sponsor-logo:hover {
+    scale: 1.025;
+  }
+  .people-photo:hover img,.speaker-gallery>div:hover img {
+    scale: 1.025;
+  }
+}
+
+.desktop-nav {
+  gap: 14px;
+}
+
+.desktop-nav a {
+  border-radius: 30px;
+  padding: 9px 12px;
+  transition: background .25s,box-shadow .25s,color .25s;
+}
+
+.icon-button {
+  transition: background .25s,border-color .25s,scale .25s,box-shadow .25s;
+}
+
+.text-link {
+  transition: color .25s;
+}
+
+.people-photo img,.speaker-gallery img {
+  transition: scale .6s cubic-bezier(.2,.7,.3,1);
+}
+
+.qualities>[data-hover],.contact-grid>[data-hover] {
+  border-radius: 8px;
+}
+
+/* Brushed highlights travel inside the letterforms as the section scrolls. */
+
+.prize-intro h2.prize-amount {
+  font-size: clamp(74px,12.8vw,178px);
+  font-weight: 700;
+  letter-spacing: -.07em;
+  line-height: 1.13;
+  margin-block: 20px;
+}
+
+.prize-intro h2 .prize-amount-ink {
+  display: inline-block;
+  padding-inline: .03em;
+  background-image: linear-gradient(112deg,#e3334b 4%,#ee6c7f 17%,#f4d6dc 25%,#fff 31%,#adabb5 36%,#ee334c 44%,#77233a 54%,#f46a80 65%,#fff4f5 76%,#f24561 86%,#e73451 97%);
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 8px 22px rgba(238,51,76,.07));
+}
+
+.prize-intro .lead {
+  font-size: 19px;
+}
+
+.reward-showcase {
+  margin-top: 52px;
+  border: 1px solid #343438;
+  border-radius: 26px;
+  overflow: hidden;
+  background: linear-gradient(130deg,rgba(35,36,41,.88),rgba(13,14,17,.94) 60%);
+  box-shadow: 0 28px 90px rgba(0,0,0,.25);
+}
+
+.reward-stage {
+  display: grid;
+  grid-template-columns: .75fr 1.25fr;
+  align-items: center;
+  min-height: 420px;
+}
+
+.reward-copy {
+  padding: 38px 0 42px 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.reward-kicker {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #b5b5be;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.reward-kicker>span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f06a7e;
+  box-shadow: 0 0 12px rgba(238,51,76,.4);
+}
+
+.reward-copy h3 {
+  font-size: clamp(32px,3.5vw,48px);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -.05em;
+  margin-top: 20px;
+}
+
+.reward-copy>p {
+  font-size: 14px;
+  color: #9899a3;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+
+.reward-copy .text-link {
+  margin-top: 40px;
+  color: #efb6c0;
+  font-size: 12px;
+}
+
+.reward-display {
+  height: 420px;
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.reward-orbits {
+  position: absolute;
+  inset: 8% 2%;
+  opacity: .65;
+}
+
+.reward-orbits i {
+  position: absolute;
+  inset: 4%;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50%;
+  rotate: -25deg;
+  scale: 1 .62;
+}
+
+.reward-orbits i:nth-child(2) {
+  inset: 12% -10%;
+  rotate: 18deg;
+  border-color: rgba(237,51,70,.19);
+}
+
+.reward-orbits i:nth-child(3) {
+  inset: -6% 5%;
+  rotate: -15deg;
+  border-color: rgba(255,255,255,.055);
+}
+
+.reward-floor {
+  position: absolute;
+  bottom: 6%;
+  left: 9%;
+  width: 82%;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 30%,rgba(162,167,182,.2),rgba(24,25,30,.5) 62%,transparent 64%);
+  border-top: 1px solid rgba(255,255,255,.12);
+  transform: perspective(600px) rotateX(40deg);
+}
+
+.reward-float {
+  position: absolute;
+  inset: 4% 2% 8%;
+}
+
+.reward-product {
+  position: absolute;
+  inset: 0;
+}
+
+.reward-product img {
+  object-fit: contain;
+  filter: drop-shadow(0 24px 20px rgba(0,0,0,.6));
+}
+
+.reward-tablet {
+  inset: 2% 18% 0;
+}
+
+.reward-phone {
+  inset: 3% 27% 0;
+}
+
+.reward-selector {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+  padding: 18px;
+  background: rgba(0,0,0,.17);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.reward-option {
+  min-width: 0;
+  min-height: 83px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #9899a3;
+  background: rgba(255,255,255,.025);
+  position: relative;
+  transition: background .3s,border-color .3s,translate .3s;
+}
+
+.reward-option img {
+  width: 66px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.reward-option>span:not(.reward-option-dot) {
+  font-size: 12px;
+  text-align: left;
+}
+
+.reward-option[aria-pressed=true] {
+  color: #fff;
+  background: rgba(237,51,70,.08);
+  border-color: rgba(244,105,125,.46);
+}
+
+.reward-option-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: transparent;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.reward-option[aria-pressed=true] .reward-option-dot {
+  background: #ff8a9b;
+  box-shadow: 0 0 10px #ed3346;
+}
+
+.prize-note {
+  margin-top: 35px;
+}
+
+/* Smaller portrait cards. Cover fills the frame, without side gutters. */
+
+.speaker-gallery {
+  grid-template-columns: 1.65fr 1fr;
+}
+
+.speaker-gallery>div {
+  height: 320px;
+}
+
+.speaker-rail {
+  gap: 20px;
+  padding: 8px 2px 24px;
+}
+
+.speaker-card {
+  flex: 0 0 22.5%;
+  min-width: 190px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 12px;
+  background: rgba(22,23,26,.76);
+  padding-bottom: 18px;
+  overflow: hidden;
+}
+
+.speaker-portrait {
+  height: 230px;
+  border-radius: 0;
+  background: #242428;
+}
+
+.speaker-portrait img {
+  object-fit: cover;
+  object-position: center top;
+  transform-origin: 50% 20%;
+}
+
+.speaker-card h3 {
+  font-size: 17px;
+  line-height: 1.3;
+  margin: 18px 16px 0;
+}
+
+.speaker-card>p {
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 9px 16px 0;
+  color: #a3a3ad;
+}
+
+/* Editorial portraits replace the small testimonial avatars. */
+
+.testimonial-showcase {
+  margin-top: 65px;
+}
+
+.testimonial-feature {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  grid-template-rows: 1fr auto;
+  gap: 22px 65px;
+  min-height: 420px;
+  animation: details-in .4s ease both;
+}
+
+.testimonial-portrait {
+  grid-row: 1 / 3;
+  position: relative;
+  min-height: 420px;
+  border: 1px solid rgba(244,116,137,.42);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 0 7px rgba(237,51,70,.035),0 20px 45px rgba(0,0,0,.2);
+}
+
+.testimonial-portrait img {
+  object-fit: cover;
+  object-position: center 24%;
+}
+
+.portrait-caption {
+  position: absolute;
+  inset: auto 0 0;
+  background: linear-gradient(transparent,rgba(4,5,8,.88));
+  padding: 70px 22px 23px;
+}
+
+.portrait-caption span {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,.3);
+  background: rgba(15,15,19,.35);
+  backdrop-filter: blur(12px);
+  color: white;
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: .02em;
+  padding: 8px 12px;
+  border-radius: 7px;
+}
+
+.testimonial-quote {
+  align-self: center;
+}
+
+.testimonial-quote .quote-mark {
+  display: block;
+  height: 58px;
+  font-size: 100px;
+  margin-bottom: 14px;
+}
+
+.testimonial-quote blockquote {
+  margin: 0;
+  font-size: clamp(20px,2.2vw,29px);
+  line-height: 1.5;
+  letter-spacing: -.03em;
+  color: #e5e5e9;
+}
+
+.testimonial-person {
+  grid-column: 2;
+  padding-bottom: 12px;
+}
+
+.testimonial-person h3 {
+  font-size: 21px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.testimonial-person p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #a2a2ad;
+  margin-top: 7px;
+}
+
+.testimonial-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 30px;
+}
+
+.testimonial-navigation .testimonial-dots {
+  margin: 0;
+  justify-content: start;
+}
+
+.testimonial-dots span {
+  background: #66666f;
+}
+
+.people-photo {
+  height: 330px;
+}
+
+.sponsors-meta .eyebrow {
+  color: #a2a2ad;
+}
+
+.sponsor-logo {
+  background: #fff;
+}
+
+/* A clear invitation, with space for both the headline and its action. */
+
+.register-section {
+  background: radial-gradient(ellipse at 20% 80%,rgba(101,22,40,.19),transparent 65%),rgba(17,18,21,.8);
+  padding-block: 104px 46px;
+}
+
+.register-section .section-label {
+  color: #c1a1a9;
+}
+
+.register-section .container>.register-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 80px;
+  text-align: left;
+  align-items: center;
+}
+
+.register-section .eyebrow {
+  color: #a9a9b1;
+  font-size: 10px;
+  letter-spacing: .13em;
+}
+
+.register-section h2 {
+  font-size: clamp(74px,9vw,126px);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -.065em;
+  margin: 22px 0 0;
+}
+
+.register-section h2 span {
+  color: #ef5269;
+}
+
+.register-section .lead {
+  color: #c7c7ce;
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+.register-invitation .button {
+  margin-top: 28px;
+  padding-inline: 28px;
+  min-height: 50px;
+}
+
+.register-date {
+  margin-top: 28px;
+  font-size: 13px;
+  color: #dddde2;
+}
+
+.register-date span {
+  display: block;
+  font-size: 11px;
+  color: #8e8e99;
+  margin-top: 7px;
+}
+
+.register-bottom {
+  border-color: rgba(255,255,255,.12);
+  margin-top: 65px;
+  color: #93939d;
+}
+
+.register-bottom .text-link {
+  font-size: 11px;
+}
+
+@media(max-width:1100px) {
+  .reward-copy {
+    padding-left: 30px;
+  }
+  .reward-stage {
+    grid-template-columns: .8fr 1.2fr;
+    min-height: 360px;
+  }
+  .reward-display {
+    height: 360px;
+  }
+  .reward-option {
+    padding: 10px;
+    gap: 8px;
+  }
+  .reward-option img {
+    width: 48px;
+  }
+  .reward-option>span:not(.reward-option-dot) {
+    font-size: 11px;
+  }
+  .speaker-gallery>div {
+    height: 280px;
+  }
+  .speaker-card {
+    flex-basis: 28%;
+  }
+  .testimonial-feature {
+    gap: 20px 40px;
+    grid-template-columns: .8fr 1.2fr;
+  }
+  .testimonial-portrait {
+    min-height: 400px;
+  }
+  .register-section .container>.register-layout {
+    gap: 45px;
+  }
+}
+
+@media(max-width:899px) {
+  .ambient-contours {
+    width: 180%;
+    left: -40%;
+  }
+  .reward-stage {
+    grid-template-columns: 1fr;
+  }
+  .reward-copy {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 28px 28px 0;
+    column-gap: 24px;
+  }
+  .reward-kicker {
+    grid-column: 1 / -1;
+  }
+  .reward-copy h3 {
+    font-size: 36px;
+  }
+  .reward-copy>p {
+    font-size: 12px;
+    text-align: right;
+  }
+  .reward-copy .text-link {
+    grid-column: 1 / -1;
+    margin-top: 18px;
+  }
+  .reward-display {
+    height: 370px;
+  }
+  .reward-float {
+    inset: 4% 8% 8%;
+  }
+  .reward-selector {
+    gap: 8px;
+    padding: 12px;
+  }
+  .reward-option {
+    flex-direction: column;
+    gap: 6px;
+    min-height: 96px;
+  }
+  .reward-option img {
+    width: 60px;
+    height: 44px;
+  }
+  .reward-option-dot {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .speaker-card {
+    flex-basis: 32%;
+  }
+  .speaker-portrait {
+    height: 215px;
+  }
+  .speaker-gallery>div {
+    height: 270px;
+  }
+  .people-photo {
+    height: 320px;
+  }
+  .testimonial-feature {
+    grid-template-columns: .8fr 1.2fr;
+    gap: 22px 30px;
+  }
+  .testimonial-portrait {
+    min-height: 365px;
+  }
+  .testimonial-quote blockquote {
+    font-size: 20px;
+  }
+  .testimonial-person h3 {
+    font-size: 19px;
+  }
+  .register-section {
+    padding-block: 80px 38px;
+  }
+  .register-section .container>.register-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+  .register-section h2 {
+    font-size: 76px;
+  }
+  .register-section .lead {
+    font-size: 16px;
+  }
+}
+
+@media(max-width:599px) {
+  .prize-intro h2.prize-amount {
+    font-size: 17vw;
+    margin-block: 22px;
+    white-space: nowrap;
+  }
+  .prize-intro .lead {
+    font-size: 15px;
+  }
+  .reward-showcase {
+    margin-top: 32px;
+    border-radius: 18px;
+  }
+  .reward-copy {
+    padding: 25px 22px 0;
+    column-gap: 10px;
+  }
+  .reward-copy h3 {
+    font-size: 28px;
+    margin-top: 16px;
+  }
+  .reward-copy>p {
+    margin-top: 16px;
+    font-size: 10px;
+  }
+  .reward-copy .text-link {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+  .reward-kicker {
+    font-size: 8px;
+  }
+  .reward-display {
+    height: 265px;
+  }
+  .reward-float {
+    inset: 5% 4% 7%;
+  }
+  .reward-floor {
+    bottom: 9%;
+  }
+  .reward-phone {
+    inset: 3% 25% 0;
+  }
+  .reward-selector {
+    grid-template-columns: repeat(2,1fr);
+    padding: 10px;
+    gap: 8px;
+  }
+  .reward-option {
+    flex-direction: row;
+    min-height: 68px;
+    padding: 8px;
+    gap: 9px;
+  }
+  .reward-option img {
+    width: 40px;
+    height: 36px;
+  }
+  .reward-option>span:not(.reward-option-dot) {
+    font-size: 10px;
+  }
+  .reward-option-dot {
+    width: 3px;
+    height: 3px;
+    top: 7px;
+    right: 7px;
+  }
+  .prize-note {
+    margin-top: 26px;
+  }
+  .speaker-gallery>div {
+    height: 200px;
+  }
+  .speaker-gallery {
+    gap: 10px;
+  }
+  .speaker-rail {
+    padding-left: 0;
+    margin-right: -20px;
+  }
+  .speaker-card {
+    flex-basis: 65%;
+    min-width: 178px;
+  }
+  .speaker-portrait {
+    height: 216px;
+  }
+  .speaker-card h3 {
+    font-size: 17px;
+    margin-inline: 14px;
+  }
+  .speaker-card>p {
+    margin-inline: 14px;
+  }
+  .people-photo {
+    height: 280px;
+  }
+  .testimonial-showcase {
+    margin-top: 42px;
+  }
+  .testimonial-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-height: 0;
+  }
+  .testimonial-portrait {
+    min-height: 0;
+    height: 350px;
+    width: 100%;
+    border-radius: 13px;
+  }
+  .testimonial-portrait img {
+    object-position: center 20%;
+  }
+  .testimonial-quote .quote-mark {
+    font-size: 82px;
+    height: 45px;
+    margin-bottom: 12px;
+  }
+  .testimonial-quote blockquote {
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .testimonial-person {
+    padding-bottom: 0;
+  }
+  .testimonial-person h3 {
+    font-size: 20px;
+  }
+  .testimonial-person p {
+    font-size: 11px;
+  }
+  .testimonial-navigation {
+    padding-top: 25px;
+    gap: 12px;
+  }
+  .testimonial-dots button {
+    width: 27px;
+    padding: 10px;
+  }
+  .register-section {
+    padding-block: 64px 30px;
+  }
+  .register-section .section-label {
+    justify-content: start;
+    font-size: 9px;
+  }
+  .register-section .container>.register-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .register-section h2 {
+    font-size: clamp(66px,19vw,90px);
+    line-height: 1.02;
+    margin-top: 18px;
+  }
+  .register-section .eyebrow {
+    font-size: 9px;
+  }
+  .register-section .lead {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .register-invitation .button {
+    margin-top: 22px;
+  }
+  .register-date {
+    font-size: 12px;
+    margin-top: 24px;
+  }
+  .register-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    font-size: 9px;
+    margin-top: 40px;
+    gap: 15px;
+  }
+  .register-bottom .text-link {
+    font-size: 9px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .ambient-light,.ambient-contours,.reward-float,.reward-orbits {
+    transform: none!important;
+  }
+  [data-hover],.icon-button,.people-photo img,.speaker-gallery img {
+    translate: none!important;
+    scale: 1!important;
+  }
+  .prize-amount-ink {
+    background-position: 50% 50%!important;
+  }
+}
