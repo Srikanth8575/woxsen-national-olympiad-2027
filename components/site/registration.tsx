@@ -2,9 +2,16 @@
 
 import { createContext, useContext, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { ArrowRight, ArrowUpRight, Check, RotateCcw, X } from "lucide-react";
-import { CLASS_LEVELS, REGISTRATION_PLANS, REGISTRATION_PREVIEW_NOTICE } from "@/lib/registration";
+import { CLASS_LEVELS, REGISTRATION_PLANS, REGISTRATION_PREVIEW_NOTICE, type RegistrationPlanId } from "@/lib/registration";
 
-const RegistrationContext = createContext<(() => void) | null>(null);
+type RegistrationOptions = { plan?: RegistrationPlanId; returnFocus?: HTMLElement | null; };
+const RegistrationContext = createContext<((options?: RegistrationOptions) => void) | null>(null);
+
+export function useRegistration() {
+  const open = useContext(RegistrationContext);
+  if (!open) throw new Error("Registration controls must be inside RegistrationProvider.");
+  return open;
+}
 
 export function RegistrationTrigger({ className = "", label = "Register now" }: { className?: string; label?: string; }) {
   const open = useContext(RegistrationContext);
@@ -63,10 +70,12 @@ export function RegistrationProvider({ children }: { children: ReactNode; }) {
   const [isOpen, setIsOpen] = useState(false);
   const [complete, setComplete] = useState(false);
   const [firstName, setFirstName] = useState("");
+  const [initialPlan, setInitialPlan] = useState<RegistrationPlanId | undefined>();
 
   const close = () => { setIsOpen(false); setFirstName(""); };
-  const open = () => {
-    trigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  const open = (options?: RegistrationOptions) => {
+    trigger.current = options?.returnFocus ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    setInitialPlan(options?.plan);
     setComplete(false);
     setFirstName("");
     setIsOpen(true);
@@ -126,7 +135,7 @@ export function RegistrationProvider({ children }: { children: ReactNode; }) {
                 <label className="registration-field">WhatsApp Number<span className="registration-phone"><span className="registration-country">India +91</span><input name="whatsapp" type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="WhatsApp Number" required pattern="[0-9]{10}" minLength={10} maxLength={10} title="Enter a 10-digit WhatsApp number, without +91." /></span></label>
               </div>
               <fieldset className="registration-plans"><legend>Choose Registration Plan</legend><div>{REGISTRATION_PLANS.map(plan => <label className="registration-plan" key={plan.id}>
-                <input type="radio" name="plan" value={plan.id} required />
+                <input type="radio" name="plan" value={plan.id} defaultChecked={initialPlan === plan.id} required />
                 <span className="plan-card"><span className="plan-line"><strong>₹{plan.price}<span> – {plan.name}</span></strong><span className="plan-check"><Check size={12} /></span></span><span className="plan-description">{plan.description}</span></span>
               </label>)}</div></fieldset>
               <label className="registration-field">Name of School / College<input name="institution" autoComplete="organization" placeholder="Name of the School/College" required maxLength={200} pattern=".*\S.*" title="Enter the name of your school or college." /></label>

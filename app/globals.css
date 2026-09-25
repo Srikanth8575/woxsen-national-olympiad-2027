@@ -994,24 +994,24 @@ section[id],footer[id] {
   animation: details-in .35s ease both;
 }
 
-.round-content h4 {
+.round-body h4 {
   font-size: 21px;
   font-weight: 500;
 }
 
-.round-content p {
+.round-body p {
   font-size: 14px;
   line-height: 1.8;
   color: #a5a5ad;
   margin-top: 12px;
 }
 
-.round-content strong {
+.round-body strong {
   color: #e0e0e5;
   font-weight: 500;
 }
 
-.round-content .eyebrow {
+.round-body .eyebrow {
   color: var(--red);
   font-size: 10px;
   margin-bottom: 10px;
@@ -2260,7 +2260,7 @@ section[id],footer[id] {
     grid-template-columns: 1fr;
     gap: 26px;
   }
-  .round-content h4 {
+  .round-body h4 {
     font-size: 20px;
   }
   .focus-list {

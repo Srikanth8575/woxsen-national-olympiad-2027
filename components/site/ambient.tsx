@@ -3,13 +3,13 @@
 import { useEffect } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
-/** A single composited backdrop, driven by scrolling rather than a timer. */
+/** Scroll-reactive contours with a gentle independent light sweep. */
 export default function Ambient() {
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [100, -160]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [-14, 20]);
-  const x = useTransform(scrollYProgress, [0, 1], [-100, 140]);
+  const y = useTransform(scrollYProgress, [0, 1], [240, -380]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [-26, 58]);
+  const x = useTransform(scrollYProgress, [0, 1], [-180, 290]);
   useEffect(() => {
     const media = window.matchMedia("(hover: hover) and (pointer: fine)");
     let frame = 0;

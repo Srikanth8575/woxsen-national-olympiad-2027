@@ -1,0 +1,549 @@
+/* Category-specific round controls and their readable rule windows. */
+
+.round-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 0 0;
+}
+
+.round-footer>p {
+  color: #aaa4b0;
+  font-size: 11px;
+}
+
+.round-know-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  padding: 12px 19px;
+  border: 1px solid #f15f7855;
+  font-size: 12px;
+  color: #f7d9e0;
+  transition: background .2s,border-color .2s,translate .2s;
+}
+
+.round-know-more>svg:first-child {
+  color: #f5798e;
+}
+
+.round-know-more:hover {
+  border-color: #f77c92;
+  translate: 0 -2px;
+}
+
+.round-know-more.round-theme-thinking {
+  border-radius: 10px;
+  background: radial-gradient(ellipse at 0 50%,#ae304435,transparent 80%),#171418;
+}
+
+.round-know-more.round-theme-dialogue {
+  border-radius: 24px 24px 24px 6px;
+  background: #f6edef0b;
+  border-color: #e9c2cc42;
+}
+
+.round-know-more.round-theme-strategy {
+  border-radius: 3px 14px 3px 14px;
+  background: linear-gradient(135deg,#8a303031 25%,transparent 25%,transparent 75%,#8a303031 75%),#1a1518;
+  background-size: 26px 26px;
+}
+
+.round-rules-dialog {
+  width: min(720px,calc(100% - 40px));
+}
+
+.round-rules-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 28px;
+  border-bottom: 1px solid #ffffff12;
+  background: #17171af2;
+  backdrop-filter: blur(20px);
+}
+
+.round-rules-toolbar>p {
+  font-size: 11px;
+  color: #f2889d;
+}
+
+.round-rules-toolbar>p>span {
+  color: #b5aebb;
+  margin-left: 5px;
+}
+
+.round-rules-toolbar .icon-button {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+.round-rules-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 34px 32px;
+  border-bottom: 1px solid #ffffff10;
+}
+
+.round-rules-hero>p {
+  font-size: 10px;
+  color: #bfabb5;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 12px;
+  max-width: 80%;
+}
+
+.round-rules-hero h2 {
+  max-width: 440px;
+  position: relative;
+  font-size: clamp(30px,4vw,43px);
+  padding-right: 80px;
+}
+
+.round-rules-hero h2:focus {
+  outline: none;
+}
+
+.round-rules-symbol {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 94px;
+  height: 94px;
+  display: grid;
+  place-items: center;
+  color: #f69aab;
+  border: 1px solid #e75d7a30;
+  z-index: -1;
+}
+
+.round-rules-symbol svg {
+  width: 48px;
+  height: 48px;
+}
+
+.round-theme-thinking .round-rules-hero {
+  background: repeating-linear-gradient(0deg,#fff0 0 23px,#ee8b9e08 24px),repeating-linear-gradient(90deg,#fff0 0 23px,#ee8b9e08 24px),radial-gradient(ellipse at 100% 30%,#72203544,transparent 65%);
+}
+
+.round-theme-thinking .round-rules-symbol {
+  border-radius: 50%;
+  box-shadow: 0 0 0 12px #dd51610a,0 0 0 26px #dd516107;
+}
+
+.round-theme-dialogue .round-rules-hero {
+  background: radial-gradient(ellipse at 100% 0,#f199bc1b,transparent 65%);
+}
+
+.round-theme-dialogue .round-rules-symbol {
+  border-radius: 28px 28px 28px 5px;
+  rotate: -8deg;
+  background: #9e647318;
+}
+
+.round-theme-strategy .round-rules-hero {
+  background: linear-gradient(135deg,#71334124 25%,transparent 25%,transparent 75%,#71334124 75%),#171316;
+  background-size: 64px 64px;
+}
+
+.round-theme-strategy .round-rules-symbol {
+  border-radius: 4px;
+  rotate: 6deg;
+  background: #26141dcc;
+}
+
+.round-rules-list {
+  padding: 4px 32px 26px;
+  margin: 0;
+}
+
+.round-rules-list>div {
+  display: grid;
+  grid-template-columns: 135px minmax(0,1fr);
+  gap: 22px;
+  padding: 22px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.round-rules-list>div:last-child {
+  border-bottom: 0;
+}
+
+.round-rules-list dt {
+  font-size: 12px;
+  color: #aba3b2;
+  padding-top: 2px;
+}
+
+.round-rules-list dd {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #e0dae4;
+  margin: 0;
+}
+
+.round-rule-note {
+  display: block;
+  margin-top: 7px;
+  color: #f57e94;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.round-rules-list>.round-rule-important {
+  border: 1px solid #ed668238;
+  background: #a82d4110;
+  padding: 20px;
+  border-radius: 12px;
+  grid-template-columns: 115px minmax(0,1fr);
+}
+
+.round-rule-important dt {
+  color: #f798ac;
+}
+
+/* Entire plan cards select the matching form option through a real button. */
+
+.reward-plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.reward-plan:has(.reward-plan-select:focus-visible) {
+  outline: 2px solid #f890a3;
+  outline-offset: 4px;
+}
+
+.reward-plan:hover {
+  border-color: #f77b9290;
+}
+
+.reward-plan-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding: 28px 0 0;
+  font-size: 12px;
+  color: #f6a2b3;
+  text-align: left;
+}
+
+.reward-plan-select::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.reward-plan-select svg {
+  flex-shrink: 0;
+}
+
+.reward-plan ul {
+  margin-bottom: 8px;
+}
+
+.plan-guest-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 20px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #c3bacb;
+  border: 1px solid #ffffff13;
+  border-radius: 12px;
+  background: #ffffff03;
+}
+
+.plan-guest-note svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: #ed8399;
+}
+
+.campus-registration {
+  margin-top: 28px;
+}
+
+.campus-registration h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  letter-spacing: -.02em;
+  margin-bottom: 18px;
+}
+
+.campus-registration h3 svg {
+  color: #f17a91;
+  flex-shrink: 0;
+}
+
+.campus-registration-dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #dc8a9b36;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  background: linear-gradient(120deg,#421c28b3,#171318);
+}
+
+.campus-registration-dates>div {
+  padding: 24px;
+}
+
+.campus-registration-dates>div+div {
+  border-left: 1px solid #ffffff20;
+}
+
+.campus-registration-dates p {
+  font-size: 11px;
+  color: #d7bdc7;
+  margin-bottom: 9px;
+}
+
+.campus-registration-dates h4 {
+  font-size: 17px;
+  color: #f5748e;
+  font-weight: 500;
+  margin-bottom: 17px;
+}
+
+.campus-registration-dates span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.campus-registration-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 15px 24px;
+  background: #321c24;
+  border: 1px solid #dc8a9b36;
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+  color: #eacbd4;
+}
+
+.campus-registration-notice svg {
+  flex-shrink: 0;
+  color: #f07890;
+}
+
+.quick-schedule {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quick-schedule li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0,.95fr) minmax(0,1.15fr);
+  gap: 26px;
+  padding: 24px 0 24px 26px;
+  margin-left: 6px;
+  border-left: 1px solid #5c333f;
+  border-bottom: 1px solid #ffffff10;
+}
+
+.quick-schedule li::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 30px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #151317;
+  border: 1px solid #ec647f;
+  box-shadow: 0 0 0 5px #ea66830b;
+}
+
+.quick-schedule li:last-child {
+  border-bottom: 0;
+}
+
+.schedule-date {
+  color: #ded4e1;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.schedule-event {
+  color: #f47892;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* A draggable photo surface makes swiping visible as well as functional. */
+
+.testimonial-photo-swipe {
+  position: absolute;
+  inset: 0;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+.testimonial-photo-swipe:active {
+  cursor: grabbing;
+}
+
+.testimonial-photo-swipe .portrait-caption {
+  pointer-events: none;
+}
+
+.testimonial-student-image {
+  animation: student-photo-in .22s ease both;
+}
+
+@keyframes student-photo-in {
+  from {
+    opacity: .4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media(max-width:599px) {
+  .round-footer {
+    gap: 10px;
+  }
+  .round-footer>p {
+    font-size: 10px;
+  }
+  .round-know-more {
+    padding: 10px 13px;
+    gap: 9px;
+    font-size: 11px;
+  }
+  .round-know-more>svg:first-child {
+    width: 16px;
+  }
+  .round-rules-dialog {
+    width: calc(100% - 20px);
+  }
+  .round-rules-toolbar {
+    padding: 12px 18px;
+  }
+  .round-rules-toolbar>p {
+    font-size: 10px;
+  }
+  .round-rules-hero {
+    padding: 26px 20px;
+  }
+  .round-rules-hero>p {
+    font-size: 8px;
+    max-width: 75%;
+  }
+  .round-rules-hero h2 {
+    font-size: 30px;
+    padding-right: 55px;
+  }
+  .round-rules-symbol {
+    width: 62px;
+    height: 62px;
+    right: 18px;
+  }
+  .round-rules-symbol svg {
+    width: 33px;
+    height: 33px;
+  }
+  .round-rules-list {
+    padding: 2px 20px 24px;
+  }
+  .round-rules-list>div,.round-rules-list>.round-rule-important {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding-block: 19px;
+  }
+  .round-rules-list dt {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  .round-rules-list dd {
+    font-size: 13px;
+  }
+  .round-rules-list>.round-rule-important {
+    padding: 18px;
+    margin-top: 4px;
+  }
+  .reward-tabs {
+    gap: 8px;
+  }
+  .reward-tabs button {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .plan-guest-note {
+    padding: 17px;
+    font-size: 11px;
+    gap: 10px;
+  }
+  .campus-registration h3 {
+    font-size: 17px;
+  }
+  .campus-registration-dates {
+    grid-template-columns: 1fr;
+  }
+  .campus-registration-dates>div {
+    padding: 21px;
+  }
+  .campus-registration-dates>div+div {
+    border-left: 0;
+    border-top: 1px solid #ffffff20;
+  }
+  .campus-registration-notice {
+    padding: 15px 20px;
+    font-size: 10px;
+  }
+  .quick-schedule li {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 20px 0 20px 22px;
+  }
+  .quick-schedule li::before {
+    top: 26px;
+  }
+  .schedule-date {
+    font-size: 11px;
+  }
+  .schedule-event {
+    font-size: 13px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .testimonial-student-image {
+    animation: none;
+  }
+  .round-know-more {
+    transition: none;
+  }
+  .round-know-more:hover {
+    translate: none;
+  }
+}

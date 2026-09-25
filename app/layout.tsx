@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "./refinements.css";
 import "./registration.css";
+import "./polish.css";
+import "./prize-details.css";
+import "./event-guide.css";
 
 const bodyFont = localFont({
   src: [
