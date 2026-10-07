@@ -282,6 +282,11 @@ section[id],footer[id] {
   display: none;
 }
 
+.mobile-nav-panel {
+  display: none;
+  overflow: hidden;
+}
+
 .hero {
   min-height: 800px;
   height: 100svh;
@@ -1730,6 +1735,9 @@ section[id],footer[id] {
   }
   .brand img {
     width: 92px;
+  }
+  .mobile-nav-panel {
+    display: block;
   }
   .mobile-nav:not([hidden]) {
     display: grid;

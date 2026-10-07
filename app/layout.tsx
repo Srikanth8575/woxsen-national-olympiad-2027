@@ -6,6 +6,8 @@ import "./registration.css";
 import "./polish.css";
 import "./prize-details.css";
 import "./event-guide.css";
+import "./mobile-typography.css";
+import "./mobile-home.css";
 
 const bodyFont = localFont({
   src: [

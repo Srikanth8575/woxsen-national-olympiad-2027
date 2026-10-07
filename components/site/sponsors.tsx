@@ -82,6 +82,5 @@ export default function Sponsors() {
       onWheel={rest} onFocus={rest} onKeyDown={event => { if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); move(event.key === "ArrowLeft" ? -1 : 1); } }}>
       <div className="sponsor-track">{[0, 1].map(copy => <div key={copy} ref={copy === 0 ? firstSet : undefined} className="sponsor-set" aria-hidden={copy === 1 ? true : undefined}>{sponsors.map(sponsor => <div className="sponsor-logo" data-hover key={sponsor.name}><Image src={sponsor.image} alt={copy === 0 ? sponsor.name : ""} width={160} height={88} sizes="(max-width: 599px) 20vw, 160px" draggable={false} /></div>)}</div>)}</div>
     </div>
-    <p className="sponsor-swipe-hint container">Swipe or drag to explore our previous partners.</p>
   </section>;
 }

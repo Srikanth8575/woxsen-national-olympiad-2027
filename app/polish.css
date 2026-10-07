@@ -40,6 +40,34 @@
   bottom: 7px;
 }
 
+@media (min-width: 900px) {
+  .site-header .desktop-nav a::before {
+    display: none;
+  }
+
+  .site-header .desktop-nav a {
+    isolation: isolate;
+  }
+
+  .site-header .desktop-nav a[aria-current="location"] {
+    background: transparent;
+    box-shadow: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,.35);
+  }
+
+  .desktop-nav-glass {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(135deg,rgba(255,255,255,.09),rgba(210,213,219,.025) 45%,rgba(255,255,255,.055));
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    box-shadow: inset 0 0 0 1px rgba(226,230,238,.18),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 0 rgba(111,117,130,.12),0 3px 12px rgba(0,0,0,.1);
+  }
+}
+
 @media(prefers-reduced-motion:reduce) {
   .desktop-nav a::before,.mobile-nav a::before {
     transition: none;

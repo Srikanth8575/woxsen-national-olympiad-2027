@@ -1,0 +1,149 @@
+@media (max-width: 599px) {
+  .hero {
+    height: auto;
+    min-height: max(640px, 100svh);
+    max-height: none;
+  }
+
+  .hero-content {
+    padding-block: 120px 44px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-date {
+    display: grid;
+    grid-template-columns: 5px auto;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+    row-gap: 4px;
+    max-width: 100%;
+    line-height: 1.6;
+  }
+
+  .hero-date .date-divider {
+    display: none;
+  }
+
+  .hero-venue {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .hero h1 {
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .hero-kicker {
+    font-size: 18px;
+    letter-spacing: 0;
+    padding-left: 0;
+  }
+
+  .hero-title-word {
+    font-size: 56px;
+    line-height: 1.2;
+  }
+
+  .hero-edition {
+    margin-top: 0.8em;
+  }
+
+  .hero-tagline {
+    max-width: 340px;
+    margin-top: 12px;
+    font-size: 18px;
+  }
+
+  /* Flatten the action group only on phones so its link can follow the timer. */
+  .hero-cta {
+    display: contents;
+  }
+
+  .hero-cta .button {
+    order: 1;
+    margin-top: 26px;
+    min-height: 48px;
+    padding: 14px 26px;
+  }
+
+  .hero-bottom {
+    order: 2;
+    margin-top: 24px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .hero-cta .text-link {
+    order: 3;
+    margin-top: auto;
+    padding-top: 22px;
+  }
+
+  .hero .countdown-wrap {
+    width: 100%;
+    max-width: 340px;
+    margin-inline: auto;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .hero .countdown-wrap > .eyebrow {
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: 0;
+  }
+
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+
+  .hero .countdown > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .countdown strong {
+    font-size: 32px;
+  }
+
+  .countdown span {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .workshop-date {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .workshop-date span {
+    max-width: 64px;
+    margin-left: 0;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-title-word {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 430px) and (max-width: 599px) {
+  .hero-title-word {
+    font-size: 64px;
+  }
+}
