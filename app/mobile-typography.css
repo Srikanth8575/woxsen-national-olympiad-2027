@@ -1,7 +1,96 @@
-/* Restore readable body and control text on phones without resizing headings. */
+/* Phone typography: body text, compact labels, and legible form controls. */
 @media (max-width: 599px) {
+  .speakers > .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .speakers .rail-heading {
+    display: contents;
+  }
+
+  .speakers .rail-heading > .eyebrow {
+    margin-block: 24px 12px;
+  }
+
+  .speakers .rail-controls {
+    order: 1;
+    align-self: center;
+    margin-top: 16px;
+  }
+
+  .speaker-rail {
+    gap: 12px;
+    padding-inline: 12px;
+    padding-block: 12px;
+    scroll-padding-inline: 12px;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .speaker-rail .speaker-card {
+    flex: 0 0 100%;
+    min-width: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    padding: 12px 12px 18px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    transform: scale(.86);
+    opacity: .12;
+    transition: transform .6s cubic-bezier(.25,.8,.25,1), opacity .6s ease;
+  }
+
+  .speaker-rail .speaker-card.is-focused {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .speaker-rail .speaker-portrait {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: 8px;
+    background: rgba(255,255,255,.025);
+  }
+
+  .speaker-rail .speaker-portrait img,
+  .speaker-rail .speaker-card:hover .speaker-portrait img {
+    transform: scale(.92);
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .speaker-rail .speaker-card h3 {
+    font-size: 18px;
+    margin-top: 14px;
+  }
+
+  .speaker-rail .speaker-card h3,
+  .speaker-rail .speaker-card > p {
+    margin-inline: 8px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 599px) and (prefers-reduced-motion: reduce) {
+  .speaker-rail .speaker-card {
+    transition: none;
+  }
+}
+
+@media (max-width: 599px) {
+  /* Override desktop tracking, including more-specific section and dialog rules. */
+  body,
+  body * {
+    letter-spacing: 0 !important;
+  }
+
   body {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .section-label,
@@ -86,7 +175,8 @@
   .success-message,
   .encore-button,
   .success-done {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 }
 
@@ -122,7 +212,64 @@
   .campus-registration-notice,
   .schedule-date,
   .schedule-event {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.5;
   }
 }
 
+@media (max-width: 599px) {
+  .section-label,
+  .eyebrow,
+  .register-section .section-label,
+  .register-section .eyebrow,
+  .sponsors .section-label,
+  .sponsors-meta .eyebrow,
+  .contact-grid .eyebrow,
+  .round-summary .eyebrow,
+  .round-content .eyebrow,
+  .prize-intro .eyebrow,
+  .winner-caption .eyebrow,
+  .rail-heading > .eyebrow,
+  .countdown-wrap > .eyebrow,
+  .countdown span,
+  .reward-kicker,
+  .photo-caption,
+  .portrait-caption span,
+  .registration-eyebrow,
+  .registration-heading > .registration-eyebrow,
+  .registration-preview-note,
+  .plan-description,
+  .reward-dialog-eyebrow,
+  .reward-recommended,
+  .round-rules-toolbar > p,
+  .round-rules-hero > p,
+  .footer-bottom p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .about-copy > p:not(.lead),
+  .winner-intro > p:not(.section-label):not(.winner-hint),
+  .winner-caption > p:not(.eyebrow),
+  .stats-row p,
+  .qualities p,
+  .round-content p,
+  .focus-list li,
+  .speaker-card > p,
+  .testimonial-person p,
+  .contact-designation,
+  .register-section .lead {
+    line-height: 1.65;
+  }
+
+  .mobile-nav a {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .registration-field input,
+  .registration-field select,
+  .registration-phone input {
+    font-size: 16px;
+  }
+}

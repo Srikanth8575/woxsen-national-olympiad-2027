@@ -19,16 +19,23 @@
     column-gap: 8px;
     row-gap: 4px;
     max-width: 100%;
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   .hero-date .date-divider {
     display: none;
   }
 
+  .hero-date-text {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
   .hero-venue {
     grid-column: 1 / -1;
     text-align: center;
+    font-size: 12px;
+    font-weight: 400;
   }
 
   .hero h1 {
@@ -37,13 +44,13 @@
   }
 
   .hero-kicker {
-    font-size: 18px;
+    font-size: 16px;
     letter-spacing: 0;
     padding-left: 0;
   }
 
   .hero-title-word {
-    font-size: 56px;
+    font-size: 52px;
     line-height: 1.2;
   }
 
@@ -54,7 +61,8 @@
   .hero-tagline {
     max-width: 340px;
     margin-top: 12px;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.55;
   }
 
   /* Flatten the action group only on phones so its link can follow the timer. */
@@ -114,7 +122,7 @@
   }
 
   .countdown strong {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .countdown span {
@@ -138,12 +146,12 @@
 
 @media (max-width: 360px) {
   .hero-title-word {
-    font-size: 48px;
+    font-size: 46px;
   }
 }
 
 @media (min-width: 430px) and (max-width: 599px) {
   .hero-title-word {
-    font-size: 64px;
+    font-size: 60px;
   }
 }
