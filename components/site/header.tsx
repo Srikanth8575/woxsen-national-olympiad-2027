@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { RegisterLink } from "./shared";
@@ -14,6 +14,21 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("");
   const headerBar = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
+  const navigateMobile = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    setOpen(false);
+    if (id === "gallery") return;
+    const section = document.getElementById(id);
+    if (!section) return;
+    event.preventDefault();
+    toggle.current?.focus({ preventScroll: true });
+    if (window.location.hash !== `#${id}`) window.history.pushState(null, "", `#${id}`);
+    const headerHeight = headerBar.current?.getBoundingClientRect().bottom ?? 68;
+    window.scrollTo({
+      top: Math.max(0, section.getBoundingClientRect().top + window.scrollY - headerHeight - 12),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
+  };
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("main section[id], footer[id]"));
     let frame = 0;
@@ -72,7 +87,7 @@ export default function Header() {
       <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{[...links, ["Workshop", "workshop"], ["Happy people", "testimonials"], ["Contact", "contact"]].map(([label, id], index) => <motion.a key={id} href={id === "gallery" ? "/gallery" : `#${id}`} initial={false}
         animate={{ opacity: open ? 1 : 0, x: open || reducedMotion ? 0 : -32 }}
         transition={{ duration: reducedMotion ? 0 : open ? 0.6 : 0.2, delay: open && !reducedMotion ? 0.12 + index * 0.11 : 0, ease: [0.25, 0.8, 0.25, 1] }}
-        aria-current={activeSection === id ? "location" : undefined} onClick={() => setOpen(false)}>{label}</motion.a>)}</nav>
+        aria-current={activeSection === id ? "location" : undefined} onClick={event => navigateMobile(event, id)}>{label}</motion.a>)}</nav>
     </motion.div>
   </header>;
 }

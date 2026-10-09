@@ -31,4 +31,5 @@
 @keyframes backdropIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes colorReveal { from { opacity: .4; filter: grayscale(1); transform: scale(.98); } to { opacity: 1; filter: grayscale(0); transform: none; } }
 @media (max-width: 599px) { .page { padding-inline: 12px; } .header { margin-inline: -12px; padding-inline: 16px; } .header img { width: 110px; height: auto; } .back { font-size: 12px; } .heading h1 { font-size: 42px; } .grid { grid-auto-rows: 140px; gap: 8px; padding: 14px; } .fullPhoto { height: 60svh; } }
+@media (max-width: 599px), (hover: none) { .photo img, .photo:hover img, .photo:focus-visible img { filter: grayscale(0); } .fullPhoto img { animation: appear .45s ease both; } }
 @media (prefers-reduced-motion: reduce) { .grid, .viewer[open], .viewer::backdrop, .fullPhoto img { animation: none; } .photo img { transition: none; } }
