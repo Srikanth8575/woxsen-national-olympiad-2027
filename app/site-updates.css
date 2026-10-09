@@ -1,0 +1,128 @@
+.workshop-mobile-date-break {
+  display: none;
+}
+
+@media (max-width: 599px) {
+  .workshop-mobile-date-break {
+    display: block;
+  }
+}
+
+#winners-title strong, #about-title strong, #rounds-title strong,
+#speakers-title strong, #testimonials-title strong, #sponsors-title strong,
+#register-title strong, .site-footer h2 strong {
+  font-weight: 700;
+}
+
+#winners-title > span, #about-title > span, #rounds-title > span,
+#speakers-title > span, #testimonials-title > span, #sponsors-title > span,
+#register-title > span, .site-footer h2 > span {
+  font-weight: 400;
+  font-size: .88em;
+}
+
+#speakers-title > span, #testimonials-title > span, .site-footer h2 > span {
+  color: inherit;
+}
+
+#speakers-title strong, #testimonials-title strong, .site-footer h2 strong {
+  color: #96969e;
+}
+
+@media (max-width: 599px) {
+  .stats-row .mobile-crore-break {
+    display: block;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1.15;
+  }
+
+  #about-title strong, #rounds-title strong, #sponsors-title strong {
+    font-size: 32px;
+  }
+}
+
+#register-title > span {
+  display: inline-block;
+  position: relative;
+  top: -.18em;
+  font-family: var(--font-ready), sans-serif;
+  font-weight: 400;
+  font-size: .8em;
+  line-height: 1.1;
+  padding-inline: 0;
+  text-transform: none;
+}
+
+@media (max-width: 599px) {
+  #about-title, #rounds-title, #speakers-title, #testimonials-title,
+  #sponsors-title, .site-footer h2 {
+    font-size: 32px;
+    line-height: 1.18;
+    max-width: 100%;
+  }
+
+  #about-title strong, #rounds-title strong, #speakers-title strong,
+  #testimonials-title strong, #sponsors-title strong, .site-footer h2 strong {
+    font-size: 1em;
+    font-weight: 700;
+  }
+
+  #about-title > span, #rounds-title > span, #speakers-title > span,
+  #testimonials-title > span, #sponsors-title > span, .site-footer h2 > span {
+    font-size: .9em;
+    font-weight: 400;
+    line-height: inherit;
+  }
+
+  #register-title {
+    font-size: 44px;
+    line-height: 1.08;
+  }
+
+  #register-title > span {
+    font-size: .8em;
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 599px) {
+  #about-title strong {
+    font-size: 28px;
+  }
+
+  #testimonials-title > span,
+  #testimonials-title > strong {
+    display: block;
+  }
+
+  #testimonials-title > br {
+    display: none;
+  }
+
+  .speakers .speaker-gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .speakers .speaker-gallery > div {
+    height: 150px;
+  }
+
+  .speaker-rail .speaker-card {
+    background: rgba(255,255,255,.035);
+    padding: 16px 16px 20px;
+  }
+
+  .speaker-rail .speaker-card h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-top: 18px;
+  }
+
+  .speaker-rail .speaker-card > p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+}

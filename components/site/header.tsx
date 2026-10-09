@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { RegisterLink } from "./shared";
 
-const links = [["The legacy", "winners"], ["About", "about"], ["Prizes", "prizes"], ["The challenge", "rounds"], ["Speakers", "speakers"]];
+const links = [["The legacy", "winners"], ["About", "about"], ["Prizes", "prizes"], ["The challenge", "rounds"], ["Speakers", "speakers"], ["Gallery", "gallery"]];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -54,7 +54,7 @@ export default function Header() {
   return <header className="site-header">
     <div className="header-inner" ref={headerBar}>
       <a className="brand" href="#home" aria-label="Woxsen National Olympiad home" onClick={() => setOpen(false)}><Image src="/logo/woxsen-logo.svg" width={510.87} height={235.82} alt="Woxsen University" unoptimized preload /></a>
-      <nav className="desktop-nav" aria-label="Main navigation">{links.map(([label, id]) => <a key={id} href={`#${id}`} aria-current={activeSection === id ? "location" : undefined}>
+      <nav className="desktop-nav" aria-label="Main navigation">{links.map(([label, id]) => <a key={id} href={id === "gallery" ? "/gallery" : `#${id}`} aria-current={activeSection === id ? "location" : undefined}>
         {activeSection === id && <motion.span className="desktop-nav-glass" layoutId="desktop-navigation-highlight" aria-hidden="true"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ layout: { duration: reducedMotion ? 0 : 0.45, ease: [0.25, 0.8, 0.25, 1] }, opacity: { duration: reducedMotion ? 0 : 0.2 } }} />}
@@ -69,7 +69,7 @@ export default function Header() {
         opacity: { duration: reducedMotion ? 0 : open ? 0.4 : 0.25, ease: "easeInOut" },
       }}
       aria-hidden={!open} inert={!open}>
-      <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{[...links, ["Workshop", "workshop"], ["Happy people", "testimonials"], ["Contact", "contact"]].map(([label, id], index) => <motion.a key={id} href={`#${id}`} initial={false}
+      <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{[...links, ["Workshop", "workshop"], ["Happy people", "testimonials"], ["Contact", "contact"]].map(([label, id], index) => <motion.a key={id} href={id === "gallery" ? "/gallery" : `#${id}`} initial={false}
         animate={{ opacity: open ? 1 : 0, x: open || reducedMotion ? 0 : -32 }}
         transition={{ duration: reducedMotion ? 0 : open ? 0.6 : 0.2, delay: open && !reducedMotion ? 0.12 + index * 0.11 : 0, ease: [0.25, 0.8, 0.25, 1] }}
         aria-current={activeSection === id ? "location" : undefined} onClick={() => setOpen(false)}>{label}</motion.a>)}</nav>

@@ -7,8 +7,8 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { SectionLabel, RegisterLink } from "./shared";
 
 const winners = [
-  { year: "2025", label: "Olympiad Brainiac 2025", name: "Latha Indrani Busireddy", image: "/winners/winner-2025.webp", detail: "Internship at Jamboree and winner of a GMAT course." },
-  { year: "2026", label: "Olympiad Brainiac 2026", name: "Shrika Rana", image: "/winners/winner-2026.webp", detail: "Winner 2026 with an internship opportunity at Innomatics." },
+  { year: "2025", label: "Olympiad Brainiac Champion 2025", name: "Latha Indrani Busireddy", image: "/winners/winner-2025.webp", detail: "Internship at Jamboree and winner of a GMAT course." },
+  { year: "2026", label: "Olympiad Brainiac Champion 2026", name: "Shrika Rana", image: "/winners/winner-2026.webp", detail: "Winner 2026 with an internship opportunity at Innomatics." },
   { year: "2027", label: "The legacy continues", name: "Are you the one?", image: "/winners/whos-next.webp", detail: "The next Olympiad champion has not been crowned yet. That name could be yours." },
 ];
 const query = "(min-width: 900px) and (prefers-reduced-motion: no-preference)";
@@ -46,7 +46,7 @@ export default function Winners() {
   };
   return <section id="winners" className="winner-story" data-cinematic={cinematic} ref={section} aria-labelledby="winners-title">
     <div className="winner-sticky container">
-      <div className="winner-intro"><SectionLabel>The legacy</SectionLabel><h2 id="winners-title">The legacy<br /><span>continues.</span></h2><p>Challenge. Compete. Conquer.</p>
+      <div className="winner-intro"><SectionLabel>The legacy</SectionLabel><h2 id="winners-title"><strong>THE LEGACY</strong><br /><span>Continues.</span></h2><p>Challenge. Compete. Conquer.</p>
         <div className="winner-navigation" role="group" aria-label="Explore the Olympiad winners">{winners.map((winner, i) => <button key={winner.year} onClick={() => select(i)} aria-pressed={active === i}><span>{winner.year}</span><span className="winner-nav-line" /></button>)}</div>
         <p className="winner-hint"><ArrowDown size={15} /><span>Scroll through the story</span><ArrowRight size={15} /></p>
       </div>

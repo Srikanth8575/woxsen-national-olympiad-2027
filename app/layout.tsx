@@ -8,6 +8,7 @@ import "./prize-details.css";
 import "./event-guide.css";
 import "./mobile-typography.css";
 import "./mobile-home.css";
+import "./site-updates.css";
 
 const bodyFont = localFont({
   src: [
@@ -18,6 +19,14 @@ const bodyFont = localFont({
   ], variable: "--font-body", display: "swap",
 });
 
+const readyFont = localFont({
+  src: "./fonts/OpenSans-Variable.ttf",
+  weight: "300 800",
+  style: "normal",
+  variable: "--font-ready",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Woxsen National Olympiad 2027 | Challenge. Compete. Conquer.",
   description: "Woxsen National Olympiad 2027. Three challenging rounds, a ₹1 crore prize pool, and an extraordinary experience. 27–28 January at Woxsen University, Hyderabad.",
@@ -26,5 +35,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
-  return <html lang="en" className={bodyFont.variable}><body>{children}</body></html>;
+  return <html lang="en" className={`${bodyFont.variable} ${readyFont.variable}`}><body>{children}</body></html>;
 }

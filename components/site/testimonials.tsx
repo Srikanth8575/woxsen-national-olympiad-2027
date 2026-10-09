@@ -17,7 +17,7 @@ export default function Testimonials() {
     <div className="container">
       <SectionLabel>Student testimonials</SectionLabel>
       <div className="people-heading">
-        <Reveal><h2 id="testimonials-title">Happy<br /><span>people.</span></h2></Reveal>
+        <Reveal><h2 id="testimonials-title"><span>Happy</span><br /><strong>PEOPLE.</strong></h2></Reveal>
         <Reveal className="people-photo" hover><Image src="/experience/happy-people.webp" alt="Students enjoying an Olympiad event at Woxsen" fill sizes="(min-width: 900px) 58vw, 100vw" /><span className="photo-caption">The moments that stay with you.</span></Reveal>
       </div>
       <div className="testimonial-showcase">

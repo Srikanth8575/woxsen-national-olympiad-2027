@@ -71,7 +71,7 @@ export default function Sponsors() {
   };
   return <section id="sponsors" className="section sponsors light-section" aria-labelledby="sponsors-title">
     <div className="container"><SectionLabel>Previous sponsors</SectionLabel>
-      <div className="split-heading section-heading"><h2 id="sponsors-title">Great things<br /><span>grow together.</span></h2><p className="lead">A network of organisations and brands that have supported previous editions of the Woxsen Olympiad.</p></div>
+      <div className="split-heading section-heading"><h2 id="sponsors-title"><strong>GREAT THINGS</strong><br /><span>Grow Together.</span></h2><p className="lead">A network of organisations and brands that have supported previous editions of the Woxsen Olympiad.</p></div>
       <div className="sponsors-meta"><span className="eyebrow">Previous partner network</span><div className="sponsor-controls">
         <button type="button" className="icon-button" aria-label="Previous sponsors" onClick={() => move(-1)}><ArrowLeft size={17} /></button><button type="button" className="icon-button" aria-label="Next sponsors" onClick={() => move(1)}><ArrowRight size={17} /></button>
       </div></div>
