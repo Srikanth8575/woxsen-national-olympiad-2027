@@ -27,6 +27,13 @@ const readyFont = localFont({
   display: "swap",
 });
 
+const headingFont = localFont({
+  src: "./fonts/Poppins-Regular.ttf",
+  weight: "400",
+  variable: "--font-poppins",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Woxsen National Olympiad 2027 | Challenge. Compete. Conquer.",
   description: "Woxsen National Olympiad 2027. Three challenging rounds, a ₹1 crore prize pool, and an extraordinary experience. 27–28 January at Woxsen University, Hyderabad.",
@@ -35,5 +42,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
-  return <html lang="en" className={`${bodyFont.variable} ${readyFont.variable}`}><body>{children}</body></html>;
+  return <html lang="en" className={`${bodyFont.variable} ${readyFont.variable} ${headingFont.variable}`}><body>{children}</body></html>;
 }

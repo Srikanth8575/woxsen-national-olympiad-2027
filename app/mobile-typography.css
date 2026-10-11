@@ -21,25 +21,25 @@
 
   .speaker-rail {
     gap: 12px;
-    padding-inline: max(12px, calc((100% - 250px) / 2));
+    padding-inline: max(12px, calc((100% - 220px) / 2));
     padding-block: 12px;
-    scroll-padding-inline: max(12px, calc((100% - 250px) / 2));
+    scroll-padding-inline: max(12px, calc((100% - 220px) / 2));
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
   }
 
   .speaker-rail .speaker-card {
-    flex: 0 0 250px;
+    flex: 0 0 220px;
     min-width: 0;
     scroll-snap-align: center;
     scroll-snap-stop: always;
     padding: 0 0 18px;
     border-radius: 8px;
-    background: rgba(22,23,26,.76);
-    border: 1px solid rgba(255,255,255,.14);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+    background: transparent;
+    border: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
     transform: none;
     opacity: 1;
   }
@@ -51,16 +51,23 @@
 
   .speaker-rail .speaker-portrait {
     height: auto;
-    aspect-ratio: 788 / 1000;
-    border-radius: 0;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.14);
     background: #242428;
   }
 
   .speaker-rail .speaker-portrait img,
   .speaker-rail .speaker-card:hover .speaker-portrait img {
     transform: none;
-    object-fit: contain;
-    object-position: center;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(1);
+    transition: filter .5s ease;
+  }
+
+  .speaker-rail .speaker-card.is-focused .speaker-portrait img {
+    filter: grayscale(0);
   }
 
   .speaker-rail .speaker-card h3 {
@@ -70,13 +77,14 @@
 
   .speaker-rail .speaker-card h3,
   .speaker-rail .speaker-card > p {
-    margin-inline: 22px;
-    text-align: left;
+    margin-inline: 0;
+    text-align: center;
   }
 }
 
 @media (max-width: 599px) and (prefers-reduced-motion: reduce) {
-  .speaker-rail .speaker-card {
+  .speaker-rail .speaker-card,
+  .speaker-rail .speaker-portrait img {
     transition: none;
   }
 }

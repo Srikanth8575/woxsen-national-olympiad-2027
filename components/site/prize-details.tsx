@@ -92,7 +92,7 @@ export default function PrizeDetails() {
             <div className="reward-plans">{plans.map(plan => <article key={plan.id} className={`reward-plan${plan.recommended ? " reward-plan-premium" : ""}`} aria-labelledby={`reward-plan-${plan.id}`}>
               <div className="reward-plan-top"><h4 id={`reward-plan-${plan.id}`}>{plan.name}</h4>{plan.recommended && <span className="reward-recommended">Most recommended</span>}</div>
               <p className="reward-plan-price">₹{plan.price}</p>
-              <ul>{plan.features.map(feature => <li key={feature}><Check size={15} aria-hidden="true" /><span>{feature}</span></li>)}</ul>
+              <ul>{plan.features.map((feature, index) => <li key={feature} className={plan.id === "premium" && index >= 4 ? "reward-plan-extra" : undefined}><Check size={15} aria-hidden="true" /><span>{feature}</span></li>)}</ul>
               <button type="button" className="reward-plan-select" aria-haspopup="dialog" aria-controls="registration-dialog" onClick={() => choosePlan(plan.id)}>Choose {plan.name} · ₹{plan.price}<ArrowUpRight size={16} aria-hidden="true" /></button>
             </article>)}</div>
             <p className="plan-guest-note"><Info size={18} aria-hidden="true" /><span>{PLAN_NOTE}</span></p>
@@ -102,7 +102,7 @@ export default function PrizeDetails() {
             </section>
           </div>
           <div id="reward-panel-2" className="reward-panel" role="tabpanel" aria-labelledby="reward-tab-2" hidden={active !== 2} tabIndex={0}>
-            <div className="reward-plans-heading"><h3>Quick schedule</h3></div>
+            <div className="reward-plans-heading reward-schedule-heading"><h3>Quick schedule</h3><p>(Tentative)</p></div>
             <ol className="quick-schedule">{QUICK_SCHEDULE.map(item => <li key={item.event}><p className="schedule-date">{item.date}</p><p className="schedule-event">{item.event}</p></li>)}</ol>
           </div>
         </div>

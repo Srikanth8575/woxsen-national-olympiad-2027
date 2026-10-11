@@ -26,10 +26,10 @@ export const CHALLENGE_ROUNDS: ChallengeRound[] = [
     ],
   },
   {
-    id: 2, title: "Innovation Dialogue", category: "On-Campus Group Discussion", date: "28 January 2027", theme: "dialogue",
+    id: 2, title: "Innovation Dialogue", category: "On-Campus Group Discussion", date: "27-28 January 2027", theme: "dialogue",
     format: "Dynamic group discussion", focus: "Teamwork, leadership & communication through real-world problem-solving scenarios.",
     rules: [
-      { label: "Timeline", value: "28 January 2027" },
+      { label: "Timeline", value: "27-28 January 2027" },
       { label: "Mode", value: "Offline" },
       { label: "Venue", value: "On Campus (Woxsen University)" },
       { label: "Format", value: "Dynamic group discussion" },
@@ -37,10 +37,10 @@ export const CHALLENGE_ROUNDS: ChallengeRound[] = [
     ],
   },
   {
-    id: 3, title: "Strategy Arena", category: "Interactive Gaming Challenges", date: "28 January 2027", theme: "strategy",
+    id: 3, title: "Strategy Arena", category: "Interactive Gaming Challenges", date: "27-28 January 2027", theme: "strategy",
     format: "Interactive gaming challenges", focus: "Strategic thinking, adaptability & decision-making in an immersive competitive experience.",
     rules: [
-      { label: "Timeline", value: "28 January 2027" },
+      { label: "Timeline", value: "27-28 January 2027" },
       { label: "Mode", value: "Offline" },
       { label: "Venue", value: "On Campus (Woxsen University)" },
       { label: "Format", value: "Interactive gaming challenges" },
@@ -51,15 +51,15 @@ export const CHALLENGE_ROUNDS: ChallengeRound[] = [
 
 export const QUICK_SCHEDULE = [
   { date: "Last Week of December 2026", event: "Round 1: General Thinking Assessment (Online)" },
-  { date: "26 January 2027, Evening", event: "On-Campus Registration Opens" },
+  { date: "26 January 2027, 11:00 AM", event: "On-Campus Registration Opens" },
   { date: "27 January 2027, 11:00 AM", event: "Registration Closes" },
   { date: "27 January 2027, 9:00 AM–8:00 PM", event: "Workshop Day" },
-  { date: "28 January 2027", event: "Round 2: Innovation Dialogue" },
-  { date: "28 January 2027", event: "Round 3: Strategy Arena" },
+  { date: "27-28 January 2027", event: "Round 2: Innovation Dialogue" },
+  { date: "27-28 January 2027", event: "Round 3: Strategy Arena" },
 ] as const;
 
 export const CAMPUS_REGISTRATION = {
-  opens: { date: "26 January 2027", time: "Evening" },
+  opens: { date: "26 January 2027", time: "11:00 AM" },
   closes: { date: "27 January 2027", time: "11:00 AM Sharp" },
   notice: "No registrations entertained after this time.",
 } as const;

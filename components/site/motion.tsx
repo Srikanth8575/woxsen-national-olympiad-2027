@@ -14,8 +14,13 @@ export function Experience({ children }: { children: ReactNode; }) {
       lenis = media.matches ? new Lenis({ autoRaf: true, lerp: 0.1, anchors: true }) : undefined;
     };
     setup();
+    const accordionMotion = (event: Event) => {
+      if ((event as CustomEvent<boolean>).detail) lenis?.stop();
+      else { lenis?.resize(); lenis?.start(); }
+    };
+    window.addEventListener("olympiad:accordion-motion", accordionMotion);
     media.addEventListener("change", setup);
-    return () => { media.removeEventListener("change", setup); lenis?.destroy(); };
+    return () => { window.removeEventListener("olympiad:accordion-motion", accordionMotion); media.removeEventListener("change", setup); lenis?.destroy(); };
   }, []);
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }

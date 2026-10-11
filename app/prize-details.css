@@ -275,6 +275,19 @@
   color: #b3aebb;
 }
 
+.reward-schedule-heading p {
+  margin-top: 0;
+}
+
+.reward-plan li.reward-plan-extra {
+  color: #fff;
+  font-weight: 700;
+}
+
+.reward-plan-extra:first-of-type {
+  margin-top: 4px;
+}
+
 .reward-plans {
   display: grid;
   grid-template-columns: 1fr 1fr;

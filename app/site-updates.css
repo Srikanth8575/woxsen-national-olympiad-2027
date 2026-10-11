@@ -2,6 +2,158 @@
   display: none;
 }
 
+.testimonial-copy-stack {
+  display: grid;
+  min-width: 0;
+}
+
+.testimonial-copy-stack > * {
+  grid-area: 1 / 1;
+  align-self: start;
+}
+
+.testimonial-quote blockquote {
+  animation: none;
+}
+
+.testimonial-portrait:hover {
+  translate: none;
+}
+
+@media (min-width: 900px) {
+  .speaker-rail {
+    cursor: grab;
+    user-select: none;
+  }
+
+  .speaker-rail[data-dragging="true"] {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+
+  .speaker-rail img {
+    -webkit-user-drag: none;
+  }
+
+  html,
+  html.lenis:not(.lenis-autoToggle).lenis-stopped {
+    overflow-y: scroll;
+    overflow-x: clip;
+    scrollbar-gutter: stable;
+  }
+
+  .desktop-nav a {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 600px) {
+  .speaker-credential-separator::before {
+    content: ", ";
+  }
+}
+
+@media (max-width: 599px) {
+  .speaker-name-line {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .speaker-credential-separator {
+    display: none;
+  }
+
+  .speaker-credentials {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+}
+
+#speakers-title > span, #testimonials-title > span, #sponsors-title > span {
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 400;
+}
+
+.winner-caption .champion-label-white {
+  color: var(--white);
+}
+
+.round-collapse {
+  overflow: hidden;
+  overflow-anchor: none;
+}
+
+@media (min-width: 900px) {
+  .register-section #register-title {
+    font-size: clamp(46px, 5vw, 72px);
+    line-height: 1.03;
+    letter-spacing: 0;
+  }
+
+  .register-section #register-title > span {
+    font-family: var(--font-body), sans-serif;
+    font-size: .88em;
+    font-weight: 400;
+    line-height: inherit;
+    position: static;
+  }
+}
+
+.winner-caption .eyebrow {
+  line-height: 1.6;
+}
+
+@media (max-width: 899px) {
+  .mobile-nav {
+    max-height: calc(100svh - 80px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (min-width: 900px) {
+  #register-title,
+  #register-title strong,
+  #register-title > span {
+    letter-spacing: 0;
+  }
+
+  .header-inner {
+    width: 100%;
+    max-width: none;
+    padding-inline: 24px;
+  }
+
+  .winner-sticky {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .winner-sticky::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 50vw);
+    width: 100vw;
+    height: 240px;
+    background: linear-gradient(transparent, rgba(8,8,9,.8) 42%, #080809);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .winner-panels {
+    z-index: 1;
+  }
+
+  .winner-caption {
+    background: transparent;
+  }
+}
+
 @media (max-width: 599px) {
   .workshop-mobile-date-break {
     display: block;
@@ -110,12 +262,12 @@
   }
 
   .speaker-rail .speaker-card {
-    background: rgba(22,23,26,.76);
+    background: transparent;
     padding: 0 0 20px;
   }
 
   .speaker-rail .speaker-card h3 {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.3;
     margin-top: 18px;
   }
@@ -124,6 +276,12 @@
     font-size: 13px;
     line-height: 1.5;
     margin-top: 8px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    height: 3em;
   }
 
   .prize-note > p > strong {
@@ -131,5 +289,14 @@
     white-space: nowrap;
     font-size: 18px;
     line-height: 1.4;
+  }
+}
+@media (max-width: 899px) {
+  .focus-heading .syllabus-common {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 400;
   }
 }

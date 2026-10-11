@@ -14,6 +14,22 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("");
   const headerBar = useRef<HTMLDivElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
+  const [destination, setDestination] = useState<string | null>(null);
+  useEffect(() => {
+    if (open || !destination) return;
+    const timer = window.setTimeout(() => {
+      const section = document.getElementById(destination);
+      if (!section) return;
+      const headerHeight = headerBar.current?.offsetHeight ?? 68;
+      window.scrollTo({
+        top: Math.max(0, section.getBoundingClientRect().top + window.scrollY - headerHeight - 12),
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+      });
+      setActiveSection(destination);
+      setDestination(null);
+    }, reducedMotion ? 0 : 350);
+    return () => window.clearTimeout(timer);
+  }, [open, destination, reducedMotion]);
   const navigateMobile = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
     setOpen(false);
@@ -23,11 +39,7 @@ export default function Header() {
     event.preventDefault();
     toggle.current?.focus({ preventScroll: true });
     if (window.location.hash !== `#${id}`) window.history.pushState(null, "", `#${id}`);
-    const headerHeight = headerBar.current?.getBoundingClientRect().bottom ?? 68;
-    window.scrollTo({
-      top: Math.max(0, section.getBoundingClientRect().top + window.scrollY - headerHeight - 12),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
-    });
+    setDestination(id);
   };
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("main section[id], footer[id]"));

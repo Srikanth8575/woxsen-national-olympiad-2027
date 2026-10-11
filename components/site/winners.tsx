@@ -22,7 +22,7 @@ function WinnerPanel({ winner, index, progress, active, cinematic }: { winner: t
   return <motion.article className={`winner-panel winner-${winner.year}`} aria-hidden={cinematic && index !== active ? true : undefined} style={cinematic ? { opacity, y, pointerEvents: index === active ? "auto" : "none" } : { opacity: 1, y: 0, pointerEvents: "auto" }}>
     <span className="winner-year" aria-hidden="true">{winner.year}</span>
     <div className="winner-photo"><Image src={winner.image} alt={index === 2 ? "A mysterious future champion in an Olympiad hat" : `${winner.name}, holding the Olympiad trophy`} fill sizes="(min-width: 900px) 48vw, 90vw" /></div>
-    <div className="winner-caption"><p className="eyebrow">{winner.label}</p><h3>{winner.name}</h3><p>{winner.detail}</p>{index === 2 && <div inert={cinematic && index !== active ? true : undefined}><RegisterLink label="Make your mark" /></div>}</div>
+    <div className="winner-caption"><p className="eyebrow">{index < 2 ? <>Red Hat<br /><span className="champion-label-white">Brainiac Champion {winner.year}</span></> : winner.label}</p><h3>{winner.name}</h3><p>{winner.detail}</p>{index === 2 && <div inert={cinematic && index !== active ? true : undefined}><RegisterLink label="Make your mark" /></div>}</div>
   </motion.article>;
 }
 

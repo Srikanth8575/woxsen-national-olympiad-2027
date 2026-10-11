@@ -25,7 +25,7 @@ export default function Testimonials() {
           onKeyDown={event => { if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); move(event.key === "ArrowLeft" ? -1 : 1); } }}>
           <div className="testimonial-visual">
             <div className="testimonial-portrait hover-surface" data-hover>
-              <motion.div className="testimonial-photo-swipe" drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={reduced ? 0 : 0.25} dragMomentum={false}
+              <motion.div className="testimonial-photo-swipe" drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={reduced ? 0 : 0.08} dragMomentum={false} dragTransition={{ bounceStiffness: 700, bounceDamping: 55 }}
                 onDragEnd={(_, info) => { if (Math.abs(info.offset.x) > 40 || (Math.abs(info.offset.x) > 16 && Math.abs(info.velocity.x) > 450)) move(info.offset.x < 0 ? 1 : -1); }}>
                 <Image key={person.image} className="testimonial-student-image" src={person.image} alt={person.name} fill sizes="(min-width: 900px) 30vw, 260px" draggable={false} />
                 <div className="portrait-caption"><span>{person.highlight}</span></div>
@@ -38,8 +38,8 @@ export default function Testimonials() {
             </div>
             <p className="testimonial-swipe-hint">Swipe the photo to meet the next student</p>
           </div>
-          <div className="testimonial-quote" aria-live="polite" aria-atomic="true"><span className="sr-only">{person.name}. </span><span className="quote-mark" aria-hidden="true">“</span><blockquote key={person.name}>{person.quote}</blockquote></div>
-          <figcaption className="testimonial-person"><h3>{person.name}</h3><p>{person.achievement}</p></figcaption>
+          <div className="testimonial-quote" aria-live="polite" aria-atomic="true"><span className="sr-only">{person.name}. </span><span className="quote-mark" aria-hidden="true">“</span><div className="testimonial-copy-stack">{testimonials.map((item, i) => <blockquote key={item.name} aria-hidden={i !== index} style={{ visibility: i === index ? "visible" : "hidden" }}>{item.quote}</blockquote>)}</div></div>
+          <figcaption className="testimonial-person testimonial-copy-stack">{testimonials.map((item, i) => <div key={item.name} aria-hidden={i !== index} style={{ visibility: i === index ? "visible" : "hidden" }}><h3>{item.name}</h3><p>{item.achievement}</p></div>)}</figcaption>
         </figure>
       </div>
     </div>
